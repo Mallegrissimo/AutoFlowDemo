@@ -2,223 +2,245 @@
 <html>
 
 <head>
-    <title>AutoFlow</title>
-    <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            background: #ecece9;
-        }
+  <title>AutoFlow by @Mallegrissimo</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ecece9;
+    }
 
-        div .node {
-            cursor: move;
-        }
+    div .node {
+      cursor: move;
+    }
 
-        .node .selected {
-            stroke: #348 !important;
-            stroke-width: 2px;
-            fill: #9fcfff;
-        }
+    .node .selected {
+      stroke: #348 !important;
+      stroke-width: 2px;
+      fill: #9fcfff;
+    }
 
-        .node .active {
-            stroke: #f55 !important;
-            stroke-width: 5px !important;
+    .node .active {
+      stroke: #f55 !important;
+      stroke-width: 5px !important;
 
-        }
+    }
 
-        .node-body {
-            padding: 0;
-            background: #fff;
-            border-radius: 5px;
-            margin: 0;
-            overflow-wrap: break-word;
-            white-space: pre-wrap;
-            min-width: 20px;
-            text-align: center;
-        }
+    .node-body {
+      padding: 0;
+      background: #fff;
+      border-radius: 5px;
+      margin: 0;
+      overflow-wrap: break-word;
+      white-space: pre-wrap;
+      min-width: 20px;
+      text-align: center;
+    }
 
-        .node-content {
-            padding: 1px;
-            height: 100%;
-            font-family: "courier";
-        }
+    .node-content {
+      padding: 1px;
+      height: 100%;
+      font-family: "courier";
+    }
 
-        .node-content-label {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
+    .node-content-label {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
-            font-size: 0.9em;
-            font-weight: 400;
-            margin: 1px 0 1px 0;
-            width: 100%;
-            height: 100%;
-
-
-        }
-
-        .node-content-description {
-            display: block;
-            overflow: hidden;
-            width: 100%;
-            height: 100%;
-            font-size: 0.4em;
-            line-height: 1.5em;
-        }
-
-        .node-content-progress {
-            width: 100%;
-            color: green;
-        }
-
-        .node rectx,
-        .node circle,
-        .node ellipse {
-            stroke: #000;
-            fill: #cdf;
-            stroke-width: 1px;
-            cursor: move;
-        }
-
-        .node rect.normal {
-            stroke: #000;
-            fill: rgb(50, 55, 66);
-            stroke-width: 1px;
-            cursor: move;
-        }
-
-        .edgePath path.path {
-            stroke: #69c;
-            fill: none;
-            stroke-width: 2px;
-        }
+      font-size: 0.9em;
+      font-weight: 400;
+      margin: 1px 0 1px 0;
+      width: 100%;
+      height: 100%;
 
 
-        .edgePath marker {
-            fill: #faf;
-        }
+    }
+
+    .node-content-description {
+      display: block;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      font-size: 0.4em;
+      line-height: 1.5em;
+    }
+
+    .node-content-progress {
+      width: 100%;
+      color: green;
+    }
+
+    .node rectx,
+    .node circle,
+    .node ellipse {
+      stroke: #000;
+      fill: #cdf;
+      stroke-width: 1px;
+      cursor: move;
+    }
+
+    .node rect.normal {
+      stroke: #000;
+      fill: rgb(50, 55, 66);
+      stroke-width: 1px;
+      cursor: move;
+    }
+
+    .edgePath path.path {
+      stroke: #69c;
+      fill: none;
+      stroke-width: 2px;
+    }
 
 
-        .cluster rect {
-            fill: #fdc;
-        }
-
-        .viewport g {}
+    .edgePath marker {
+      fill: #faf;
+    }
 
 
-        /* drop down button */
-        .dropbtn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 6px;
-            font-size: 12px;
-            border: none;
-        }
+    .cluster rect {
+      fill: #fdc;
+    }
 
-        .dropup {
-            position: absolute;
-            top: 1%;
-            right: 1%;
-            display: inline-block;
-        }
+    .viewport g {}
 
-        .dropup-content {
-            display: none;
-            background-color: #dffccc;
-            min-width: 10px;
-            top: 5%;
-            z-index: 1;
-        }
 
-        .dropup-content a {
-            color: black;
-            padding: 3px 3px;
-            text-decoration: none;
-            display: block;
-        }
+    /* drop down button */
+    .dropbtn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 6px;
+      font-size: 12px;
+      border: none;
+    }
 
-        .dropup-content a:hover {
-            background-color: #96d89b;
-            text-decoration: underline;
-            text-decoration-color: #4cafaf;
-        }
+    .dropup {
+      position: absolute;
+      top: 1%;
+      right: 1%;
+      display: inline-block;
+    }
 
-        .dropup-content a.export_to_svg {
-            display: none;
-        }
+    .dropup-content {
+      display: none;
+      background-color: #dffccc;
+      min-width: 10px;
+      top: 5%;
+      z-index: 1;
+    }
 
-        .dropup:hover .dropup-content {
-            display: block;
-        }
+    .dropup-content a {
+      color: black;
+      padding: 3px 3px;
+      text-decoration: none;
+      display: block;
+    }
 
-        .dropup:hover .dropbtn {
-            background-color: #3e8e41;
-        }
-        
-        .node-ref-link {
-            background-position: -120px 0px;
-            background-image: url('../assets/icons.png');
-            width: 16px;
-            height: 16px;
-            zoom: .25;
-            position: absolute;
-            top: 1px;
-            right: 1px;
-        }
-        #author{
-            position: absolute;
-            top: 1%;
-            right: 5%;
-            display: inline-block;
-        }
-        #demo1-ui{
-            position: absolute;
-            top: 1%;
-            left: 24%;
-        }
-        #demoGroup{
-            position: absolute;
-            top: 1%;
-            left: 1%;
-        }
-    </style>
+    .dropup-content a:hover {
+      background-color: #96d89b;
+      text-decoration: underline;
+      text-decoration-color: #4cafaf;
+    }
+
+    .dropup-content a.export_to_svg {
+      display: none;
+    }
+
+    .dropup:hover .dropup-content {
+      display: block;
+    }
+
+    .dropup:hover .dropbtn {
+      background-color: #3e8e41;
+    }
+
+    .node-ref-link {
+      background-position: -120px 0px;
+      background-image: url('./assets/icons.png');
+      width: 16px;
+      height: 16px;
+      zoom: .25;
+      position: absolute;
+      top: 1px;
+      right: 1px;
+    }
+
+    #author {
+      position: absolute;
+      top: 1%;
+      right: 8%;
+      display: inline-block;
+      font-size: 12px;
+    }
+
+    #author div.social {
+      line-height: 22px;
+      width: 22px;
+      height: 22px;
+    }
+
+    svg.icon {
+      display: inline-block;
+    }
+
+    #demo1-ui {
+      position: absolute;
+      top: 1%;
+      left: 32%;
+    }
+
+    #demoGroup {
+      position: absolute;
+      top: 1%;
+      left: 1%;
+    }
+  </style>
 </head>
 
 <body>
-    <div class='ui'>
-      <div id='demo1-ui'>
-        <label for='ddl_level'>Job/Table:</label>
-        <select id='ddl_level'>
-            <option value='Job'>Job</option>
-            <option value='Table'>Table</option>
-        </select>
+  <div class='ui'>
+    <div id='demo1-ui'>
+      <label for='ddl_level'>Job/Table:</label>
+      <select id='ddl_level'>
+        <option value='Job'>Job</option>
+        <option value='Table'>Table</option>
+      </select>
 
-        <label id ='lbl_ddl_dept' for='ddl_dept'>Dependency:</label>
-        <select id='ddl_dept'>
-            <option value='All'>All</option>
-            <option value='External'>External</option>
-            <option value='Internal'>Internal</option>
-        </select>
+      <label id='lbl_ddl_dept' for='ddl_dept'>Dependency:</label>
+      <select id='ddl_dept'>
+        <option value='All'>All</option>
+        <option value='External'>External</option>
+        <option value='Internal'>Internal</option>
+      </select>
 
-        <label id ='lbl_ddl_schema' for='ddl_schema' style='display: none;'>Source Schema:</label>
-        <select id='ddl_schema' style='display: none;'>
-        </select>
-      </div>
-      <div id='demoGroup'>
-        <input type='radio' value='demo1' name="demo" checked><label for="demo1">Demo 1: Job/Table <a href='https://dataedo.com/samples/html/AdventureWorks/doc/AdventureWorks_2/home.html'>src</a></label>
-        <input type='radio' value='demo2' name="demo"><label for="demo2">Demo 2: Progress</label> 
-      </div>
-      <div id='author'><a  href='twitter:Mallegrissimo'>AutoFlow by @Mallegrissimo</a></div>
+      <label id='lbl_ddl_schema' for='ddl_schema' style='display: none;'>Source Schema:</label>
+      <select id='ddl_schema' style='display: none;'>
+      </select>
     </div>
-    <div id='autoflow-chart-div'>
+    <div id='demoGroup'>
+      <input type='radio' id='demo1' value='demo1' name="demo" checked><label for="demo1">Demo 1: <a
+          href='https://dataedo.com/samples/html/AdventureWorks/doc/AdventureWorks_2/home.html' target='_blank' >(AdventureWorks)</a></label>
+      <input type='radio' id='demo2' value='demo2' name="demo"><label for="demo2">Demo 2: Progress</label>
     </div>
-    <script src="main.js"></script>
-
-
-
+    <div id='author'>
+      <a href='https://github.com/Mallegrissimo/AutoFlow' target='_blank'>AutoFlow by @Mallegrissimo</span>
+        <div class='social'>
+          <a href="https://github.com/Mallegrissimo" target='_blank'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"
+              aria-hidden="true" class="icon">
+              <path
+                d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z">
+              </path>
+            </svg></a>
+        </div>
+    </div>
+  </div>
+  <div id='autoflow-chart-div'>
+  </div>
+<script src="main.js"></script>
 </body>
 
-</html
+</html>
