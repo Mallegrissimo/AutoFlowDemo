@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>AutoFlow by @Mallegrissimo</title>
+  <title>AutoFlow</title>
   <style>
     html,
     body {
@@ -160,7 +160,7 @@
 
     .node-ref-link {
       background-position: -120px 0px;
-      background-image: url('./assets/icons.png');
+      background-image: url('../assets/icons.png');
       width: 16px;
       height: 16px;
       zoom: .25;
@@ -198,6 +198,67 @@
       top: 1%;
       left: 1%;
     }
+
+    #try_it {
+      display: none;
+      position: absolute;
+      top: 4%;
+      left: 2%;
+    }
+
+    #input_mapping {
+      display: none;
+      top: 9%;
+      right: 5%;
+      position: absolute;
+    }
+
+    #input_filter {
+      display: none;
+      top: 9%;
+      right: 20%;
+      position: absolute;
+    }
+
+    #input_text {
+      width: 310px;
+      height: 120px;
+    }
+
+    #input_text_default {
+      width: 310px;
+      height: 120px;
+      display: none;
+    }
+
+    #input_file {
+      display: none;
+    }
+
+    select {
+      width: 120px;
+    }
+
+    select.option_with_val {
+      background-color: blanchedalmond;
+    }
+
+
+    label span.input_mandatory {
+      color: red;
+    }
+
+    #input_table th {
+      text-align: left;
+    }
+
+    #xddl_SourceDesc2 {
+      display: none;
+    }
+
+    #xddl_TargetDesc2 {
+      display: none;
+    }
   </style>
 </head>
 
@@ -222,15 +283,113 @@
       </select>
     </div>
     <div id='demoGroup'>
+      <input type='radio' id='demo3' value='demo3' name="demo"><label for="demo3" style="background-color:sandybrown;" >Try it!</label>
       <input type='radio' id='demo1' value='demo1' name="demo" checked><label for="demo1">Demo 1: <a
-          href='https://dataedo.com/samples/html/AdventureWorks/doc/AdventureWorks_2/home.html' target='_blank' >(AdventureWorks)</a></label>
+          href='https://dataedo.com/samples/html/AdventureWorks/doc/AdventureWorks_2/home.html'
+          target='_blank'>(AdventureWorks)</a></label>
       <input type='radio' id='demo2' value='demo2' name="demo"><label for="demo2">Demo 2: Progress</label>
+    </div>
+    <div id="try_it">
+      <h4>Have a look at PowerBI demo(<a href="https://www.youtube.com/watch?v=0hG8-Z5ITnI" target="_blank">video</a>)
+        and <a href="https://www.youtube.com/watch?v=Wo58rtiidKk" target="_blank"> portable version</a>.</h4>
+      <div class="div_input_content">
+        <div>Upload a csv file or turn your own dataset to JSON in <a href="https://csvjson.com/csv2json"
+            target="_blank">here.</a></div>
+            <br/>
+        <input type='radio' id="rdo_input_default" value='rdo_input_default' name="rdo_input"><label
+          for="rdo_input_default" style="background-color:wheat;">Try Demo Dataset</label>
+        <input type='radio' id="rdo_input_text" value='rdo_input_text' name="rdo_input" checked><label
+          for="rdo_input_text">Paste Your Own</label>
+        <input type='radio' id="rdo_input_file" value='rdo_input_file' name="rdo_input"><label
+          for="rdo_input_file">Upload</label>
+
+
+        <div id="input_content">
+          <textarea id="input_text"
+            placeholder="Paste data as json format, here will take first 50 lines to visualize. &#10;&#10;Please reach out for unlimited features and Power BI version."></textarea>
+          <textarea id="input_text_default" readonly="true"
+            placeholder="Paste data as json format, here will take first 50 lines to visualize. &#10;&#10;Please reach out for unlimited features and Power BI version."></textarea>
+          <input id="input_file" type="file" accept=".csv" />
+        </div>
+      </div>
+    </div>
+    <div id="input_mapping">
+      <table id="input_table">
+        <tr>
+          <th><label for="">Source Id<span class="input_mandatory">*</span></label></th>
+          <td><select id="xddl_SourceId">
+              <option value="">-Select-</option>
+            </select></td>
+        </tr>
+        <tr>
+          <th><label for="">Source Desc</label></th>
+          <td><select id="xddl_SourceDesc">
+              <option value="">-Select-</option>
+            </select></td>
+          <td><select id="xddl_SourceDesc2">
+              <option value="">-Select-</option>
+            </select></td>
+        </tr>
+        <tr>
+          <th><label for="">Target Id<span class="input_mandatory">*</span></label></th>
+          <td><select id="xddl_TargetId">
+              <option value="">-Select-</option>
+            </select></td>
+        </tr>
+        <tr>
+          <th><label for="">Target Desc</label></th>
+          <td><select id="xddl_TargetDesc">
+              <option value="">-Select-</option>
+            </select></td>
+          <td><select id="xddl_TargetDesc2">
+              <option value="">-Select-</option>
+            </select></td>
+        </tr>
+        <tr>
+          <th><label for="">Node Color</label></th>
+          <td><select id="xddl_NodeColor">
+              <option value="">-Select-</option>
+            </select></td>
+        </tr>
+        <tr>
+          <th><label for="">Node Url</label></th>
+          <td><select id="xddl_NodeUrl">
+              <option value="">-Select-</option>
+            </select></td>
+        </tr>
+      </table>
+    </div>
+    <div id="input_filter">
+      <table>
+        <tr>
+          <th><label for="">Filter By</label></th>
+          <th>Value</th>
+
+        </tr>
+        <tr>
+          <td><select id="xddl_filter">
+              <option value="">-Select-</option>
+            </select></td>
+          <td><select id="fltr_value">
+              <option value="">-Select-</option>
+            </select></td>
+        </tr>
+        <tr>
+          <td><select id="xddl_filter2">
+              <option value="">-Select-</option>
+            </select></td>
+          <td><select id="fltr_value2">
+              <option value="">-Select-</option>
+            </select></td>
+        </tr>
+      </table>
+
     </div>
     <div id='author'>
       <a href='https://github.com/Mallegrissimo/AutoFlow' target='_blank'>AutoFlow by @Mallegrissimo</span>
         <div class='social'>
-          <a href="https://github.com/Mallegrissimo" target='_blank'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"
-              aria-hidden="true" class="icon">
+          <a href="https://github.com/Mallegrissimo" target='_blank'><svg xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 496 512" aria-hidden="true" class="icon">
               <path
                 d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z">
               </path>
@@ -240,7 +399,12 @@
   </div>
   <div id='autoflow-chart-div'>
   </div>
-<script src="main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="main.js"></script>
+  <script>
+    let viz_data=window.data;$('input:radio[name="demo"]').change(()=>{"demo3"==$('input[name="demo"]:checked').val()?($("#try_it").show(),$("#input_mapping").show(),$("#input_filter").show(),window.af.update([],{})):($("#try_it").hide(),$("#input_mapping").hide(),$("#input_filter").hide())}),$('input:radio[name="rdo_input"]').change(()=>{let e=$('input[name="rdo_input"]:checked').val();"rdo_input_text"==e?($("#input_text").show(),$("#input_text_default").hide(),$("#input_file").hide()):"rdo_input_default"==e?($("#input_text").hide(),$("#input_text_default").show(),$("#input_file").hide(),$("#input_text_default").val(JSON.stringify(window.data)),updateDropdowns()):($("#input_text").hide(),$("#input_text_default").hide(),$("#input_file").show())});const updateDropdowns=e=>{e=e||window.data,$('select[id^="xddl_"]').each((t,n)=>{$(n).find("option").remove().end().append('<option value="">-Select-</option>'),Object.keys(e[0]).map(e=>{$(n).append(`<option value="${e}">${e}</option>`)})}),e&&e.length>0&&(reloadPresets(),$('select[id^="xddl_"]').each((e,t)=>{$(t).css("background-color",""),$(t).val()&&($(t).css("background-color","blanchedalmond"),$(t).find("option").each((e,t)=>{$(t).css("background-color","#fff")}))}))};$('select[id^="xddl_"]').each((e,t)=>{$(t).change(()=>{$(t).css("background-color",""),$(t).val()&&($(t).css("background-color","blanchedalmond"),$(t).find("option").each((e,t)=>{$(t).css("background-color","#fff")})),!$(t).prop("id").indexOf("xddl_filter")&&$(t).val()||render(getInputData())})});const getInputData=(e,t,n)=>{let a=[],i=$('input[name="rdo_input"]:checked').val();if("rdo_input_text"==i){try{a=(a=JSON.parse($("#input_text").val())).length>50?a.slice(0,50):a}catch(e){}return a}if("rdo_input_default"==i)return a=window.data;{if(!e)return window.uploaddata;let i=e.target.files[0];if(i){let e=new FileReader;e.readAsText(i),e.onload=(e=>{a=csvJSON(e.target.result),window.uploaddata=a,t(a),n(a),($(".autoflow-chart-div > svg")||0==$(".autoflow-chart-div > svg").length)&&($(".div_input_content").css("opacity",1),$("#input_filter").css("opacity",1),$("#input_mapping").css("opacity",1))}),e.onerror=(e=>{document.getElementById("fileContents").innerHTML="error reading file"})}else document.getElementById("fileContents").innerHTML="Not a csv file"}},csvJSON=e=>{let t=e.split("\n");const n=t.shift().split(",");return t.shift(),t.map(e=>{const t=e.split(",");let a={};return n.forEach((e,n)=>a[e]=t[n]),a})};$("#try_it").mouseover(()=>{userInput()}).mouseout(()=>{finishInput()}),$("#input_filter").mouseover(()=>{userInput()}).mouseout(()=>{finishInput()}),$("#input_mapping").mouseover(()=>{userInput()}).mouseout(()=>{finishInput()});const userInput=()=>{($("#autoflow-chart-div > svg")||0==$("#autoflow-chart-div > svg").length)&&($(".div_input_content").css("opacity",1),$("#input_filter").css("opacity",1),$("#input_mapping").css("opacity",1))},finishInput=()=>{$("#autoflow-chart-div > svg").length>0&&($(".div_input_content").css("opacity",.2),$("#input_filter").css("opacity",.2),$("#input_mapping").css("opacity",.2))};$("#input_text").focus(()=>{$("#input_text").css("height",400),$("#input_text").css("width",700)}),$("#input_text").blur(()=>{$("#input_text").css("height",120),$("#input_text").css("width",310);let e=null;try{e=JSON.parse($("#input_text").val())}catch(e){}updateDropdowns(e)}),$("#input_text_default").focus(()=>{$("#input_text_default").css("height",400),$("#input_text_default").css("width",700)}),$("#input_text_default").blur(()=>{$("#input_text_default").css("height",120),$("#input_text_default").css("width",310),updateDropdowns(window.data)});const bindFilterColChange=(e,t)=>{$(e).change(()=>{updateFilterColChange(e,t)})};$("#input_file").change(e=>{getInputData(e,updateDropdowns,render)});const updateFilterColChange=(e,t)=>{let n=$(e).val(),a={};$(t).find("option").remove().end().append('<option value="">-Select-</option>'),n&&window.data&&window.data.forEach(e=>{a[e[n]]||($(t).append(`<option value="${e[n]}">${e[n]}</option>`),a[e[n]]=e[n])})};bindFilterColChange("#xddl_filter","#fltr_value"),bindFilterColChange("#xddl_filter2","#fltr_value2"),$('select[id^="fltr_value"]').each((e,t)=>{$(t).change(()=>{renderFilterChange()})});const renderFilterChange=e=>{let t=$("#fltr_value").val(),n=$("#fltr_value2").val();if(t||n){let a=getMapping().Filter,i=getMapping().Filter2,l=e||window.data;a.column&&t&&(l=l.filter(e=>e[a.column]==t)),i.column&&n&&(l=l.filter(e=>e[i.column]==n)),render(l)}},reloadPresets=()=>{"rdo_input_default"==$('input[name="rdo_input"]:checked').val()&&($("#xddl_SourceId").val("SourceTable"),$("#xddl_SourceDesc").val("SourceSchema"),$("#xddl_TargetId").val("TargetTable"),$("#xddl_TargetDesc").val("TargetSchema"),$("#xddl_filter").val("SourceSchema"),updateFilterColChange("#ddl_filter","#fltr_value"),render())},getMapping=()=>{let e=$("#xddl_SourceId").val(),t=$("#xddl_SourceDesc").val(),n=$("#xddl_SourceDesc2").val(),a=$("#xddl_TargetId").val(),i=$("#xddl_TargetDesc").val(),l=$("#xddl_TargetDesc2").val(),d=($("#xddl_NodeColor").val(),$("#xddl_NodeUrl").val(),$("#xddl_filter").val()),o=$("#xddl_filter2").val(),r={column:null,ref:null};return{SourceId:{column:e,ref:e},SourceName:t?{column:t,ref:t}:r,SourceName2:n?{column:n,ref:n}:r,TargetId:{column:a,ref:a},TargetName:i?{column:i,ref:i}:r,TargetName2:l?{column:l,ref:l}:r,Process:r,NodeType:r,SourceMeasure:r,TargetMeasure:r,EdgeMeasure:r,NodeUrl:r,Filter:d?{column:d,ref:d}:r,Filter2:o?{column:o,ref:o}:r}},render=e=>{window.af.update(e||window.data,getMapping())};
+  </script>
+
 </body>
 
 </html>
